@@ -1,0 +1,15 @@
+{
+  "name": "3-1-npm-init",
+  "version": "1.0.0",
+  "description": "npm init test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "npm"
+  ],
+  "author": "David Sunny <uuunet1@gmail.com>",
+  "license": "MIT"
+}
