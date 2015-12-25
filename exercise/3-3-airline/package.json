@@ -1,9 +1,5 @@
-# Nodejs test repository for personal practice
-
-```
-default package.json
 {
-  "name": "node_first_app",
+  "name": "airline",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -19,4 +15,3 @@ default package.json
     "serve-favicon": "~2.3.0"
   }
 }
-```

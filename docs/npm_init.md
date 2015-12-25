@@ -14,3 +14,17 @@ npm init
 
 Press ^C at any time to quit.
 
+....
+
+## package.json 각 필드 설명
+
+**script** :
+- start
+- test
+- 0
+- 0
+
+
+## www.npmjs.org
+
+
