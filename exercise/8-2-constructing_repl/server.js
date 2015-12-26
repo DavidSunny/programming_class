@@ -1,0 +1,535 @@
+var http = require('http'),
+	flights = require('./data'),
+	db = require('./db'),
+  repl = require('repl');
+	app = require('./app')(flights, db);
+
+http.createServer(app).listen(app.get('port'), function(){
+  console.log('Express server listening on port ' + app.get('port'));
+});
+
+// !!Note
+// 터미널에서 mongod 커맨드로 mongodb 서버 실행(27027)
+// 먼저 mongoose 연결 정보 입력 -> db.js
+// -> mongoose.connect('mongodb://localhost/test');
+
+var prompt = repl.start({prompt: 'flight> '});
+
+prompt.context.info = flights;
+
+
+/**
+ *
+ * flight> info
+ { '13':
+    { data:
+       { number: 13,
+         origin: 'MKE',
+         destination: 'LAX',
+         departs: '10:00 AM',
+         arrives: '12:00 PM',
+         actualDepart: undefined,
+         actualArrive: undefined },
+      fill: [Function],
+      triggerDepart: [Function],
+      triggerArrive: [Function],
+      getInformation: [Function] },
+   '18':
+    { data:
+       { number: 18,
+         origin: 'LAX',
+         destination: 'PHX',
+         departs: '9:00 AM',
+         arrives: '9:30 AM',
+         actualDepart: undefined,
+         actualArrive: undefined },
+      fill: [Function],
+      triggerDepart: [Function],
+      triggerArrive: [Function],
+      getInformation: [Function] },
+   '33':
+    { data:
+       { number: 33,
+         origin: 'LAX',
+         destination: 'DEN',
+         departs: '5:00 PM',
+         arrives: '8:30 PM',
+         actualDepart: undefined,
+         actualArrive: undefined },
+      fill: [Function],
+      triggerDepart: [Function],
+      triggerArrive: [Function],
+      getInformation: [Function] },
+   '71':
+    { data:
+       { number: 71,
+         origin: 'LAX',
+         destination: 'ATL',
+         departs: '12:00 PM',
+         arrives: '7:00 PM',
+         actualDepart: undefined,
+         actualArrive: undefined },
+      fill: [Function],
+      triggerDepart: [Function],
+      triggerArrive: [Function],
+      getInformation: [Function] },
+   '82':
+    { data:
+       { number: 82,
+         origin: 'LAX',
+         destination: 'IAH',
+         departs: '11:00 AM',
+         arrives: '4:30 PM',
+         actualDepart: undefined,
+         actualArrive: undefined },
+      fill: [Function],
+      triggerDepart: [Function],
+      triggerArrive: [Function],
+      getInformation: [Function] },
+   '83':
+    { data:
+       { number: 83,
+         origin: 'PHX',
+         destination: 'SFO',
+         departs: '11:00 AM',
+         arrives: '12:30 PM',
+         actualDepart: undefined,
+         actualArrive: undefined },
+      fill: [Function],
+      triggerDepart: [Function],
+      triggerArrive: [Function],
+      getInformation: [Function] },
+   '99':
+    { data:
+       { number: 99,
+         origin: 'JFK',
+         destination: 'DFW',
+         departs: '3:00 PM',
+         arrives: '5:00 PM',
+         actualDepart: undefined,
+         actualArrive: undefined },
+      fill: [Function],
+      triggerDepart: [Function],
+      triggerArrive: [Function],
+      getInformation: [Function] },
+   '104':
+    { data:
+       { number: 104,
+         origin: 'SFO',
+         destination: 'LAX',
+         departs: '9:00 AM',
+         arrives: '10:00 AM',
+         actualDepart: undefined,
+         actualArrive: undefined },
+      fill: [Function],
+      triggerDepart: [Function],
+      triggerArrive: [Function],
+      getInformation: [Function] },
+   '130':
+    { data:
+       { number: 130,
+         origin: 'JFK',
+         destination: 'LAX',
+         departs: '7:00 AM',
+         arrives: '9:00 AM',
+         actualDepart: undefined,
+         actualArrive: undefined },
+      fill: [Function],
+      triggerDepart: [Function],
+      triggerArrive: [Function],
+      getInformation: [Function] },
+   '133':
+    { data:
+       { number: 133,
+         origin: 'DFW',
+         destination: 'SFO',
+         departs: '11:30 AM',
+         arrives: '12:30 PM',
+         actualDepart: undefined,
+         actualArrive: undefined },
+      fill: [Function],
+      triggerDepart: [Function],
+      triggerArrive: [Function],
+      getInformation: [Function] },
+   '147':
+    { data:
+       { number: 147,
+         origin: 'IAH',
+         destination: 'ORD',
+         departs: '1:00 PM',
+         arrives: '3:30 PM',
+         actualDepart: undefined,
+         actualArrive: undefined },
+      fill: [Function],
+      triggerDepart: [Function],
+      triggerArrive: [Function],
+      getInformation: [Function] },
+   '175':
+    { data:
+       { number: 175,
+         origin: 'LAX',
+         destination: 'SFO',
+         departs: '9:00 AM',
+         arrives: '10:00 AM',
+         actualDepart: undefined,
+         actualArrive: undefined },
+      fill: [Function],
+      triggerDepart: [Function],
+      triggerArrive: [Function],
+      getInformation: [Function] },
+   '177':
+    { data:
+       { number: 177,
+         origin: 'STL',
+         destination: 'LAX',
+         departs: '4:00 PM',
+         arrives: '6:00 PM',
+         actualDepart: undefined,
+         actualArrive: undefined },
+      fill: [Function],
+      triggerDepart: [Function],
+      triggerArrive: [Function],
+      getInformation: [Function] },
+   '182':
+    { data:
+       { number: 182,
+         origin: 'SFO',
+         destination: 'DFW',
+         departs: '10:00 AM',
+         arrives: '3:00 PM',
+         actualDepart: undefined,
+         actualArrive: undefined },
+      fill: [Function],
+      triggerDepart: [Function],
+      triggerArrive: [Function],
+      getInformation: [Function] },
+   '206':
+    { data:
+       { number: 206,
+         origin: 'STL',
+         destination: 'MKE',
+         departs: '9:00 AM',
+         arrives: '11:00 AM',
+         actualDepart: undefined,
+         actualArrive: undefined },
+      fill: [Function],
+      triggerDepart: [Function],
+      triggerArrive: [Function],
+      getInformation: [Function] },
+   '207':
+    { data:
+       { number: 207,
+         origin: 'JFK',
+         destination: 'PHX',
+         departs: '3:00 PM',
+         arrives: '4:30 PM',
+         actualDepart: undefined,
+         actualArrive: undefined },
+      fill: [Function],
+      triggerDepart: [Function],
+      triggerArrive: [Function],
+      getInformation: [Function] },
+   '223':
+    { data:
+       { number: 223,
+         origin: 'LAX',
+         destination: 'JFK',
+         departs: '9:30 AM',
+         arrives: '5:30 PM',
+         actualDepart: undefined,
+         actualArrive: undefined },
+      fill: [Function],
+      triggerDepart: [Function],
+      triggerArrive: [Function],
+      getInformation: [Function] },
+   '224':
+    { data:
+       { number: 224,
+         origin: 'LAX',
+         destination: 'BNA',
+         departs: '11:00 AM',
+         arrives: '4:30 PM',
+         actualDepart: undefined,
+         actualArrive: undefined },
+      fill: [Function],
+      triggerDepart: [Function],
+      triggerArrive: [Function],
+      getInformation: [Function] },
+   '239':
+    { data:
+       { number: 239,
+         origin: 'SFO',
+         destination: 'PDX',
+         departs: '1:00 PM',
+         arrives: '2:00 PM',
+         actualDepart: undefined,
+         actualArrive: undefined },
+      fill: [Function],
+      triggerDepart: [Function],
+      triggerArrive: [Function],
+      getInformation: [Function] },
+   '242':
+    { data:
+       { number: 242,
+         origin: 'LAX',
+         destination: 'DFW',
+         departs: '12:30 PM',
+         arrives: '5:30 PM',
+         actualDepart: undefined,
+         actualArrive: undefined },
+      fill: [Function],
+      triggerDepart: [Function],
+      triggerArrive: [Function],
+      getInformation: [Function] },
+   '307':
+    { data:
+       { number: 307,
+         origin: 'JFK',
+         destination: 'IAH',
+         departs: '2:00 PM',
+         arrives: '4:30 PM',
+         actualDepart: undefined,
+         actualArrive: undefined },
+      fill: [Function],
+      triggerDepart: [Function],
+      triggerArrive: [Function],
+      getInformation: [Function] },
+   '308':
+    { data:
+       { number: 308,
+         origin: 'ATL',
+         destination: 'JFK',
+         departs: '1:00 PM',
+         arrives: '4:00 PM',
+         actualDepart: undefined,
+         actualArrive: undefined },
+      fill: [Function],
+      triggerDepart: [Function],
+      triggerArrive: [Function],
+      getInformation: [Function] },
+   '317':
+    { data:
+       { number: 317,
+         origin: 'DFW',
+         destination: 'JFK',
+         departs: '3:00 PM',
+         arrives: '7:00 PM',
+         actualDepart: undefined,
+         actualArrive: undefined },
+      fill: [Function],
+      triggerDepart: [Function],
+      triggerArrive: [Function],
+      getInformation: [Function] },
+   '324':
+    { data:
+       { number: 324,
+         origin: 'ORD',
+         destination: 'LAX',
+         departs: '11:00 AM',
+         arrives: '12:00 PM',
+         actualDepart: undefined,
+         actualArrive: undefined },
+      fill: [Function],
+      triggerDepart: [Function],
+      triggerArrive: [Function],
+      getInformation: [Function] },
+   '336':
+    { data:
+       { number: 336,
+         origin: 'IAH',
+         destination: 'LAX',
+         departs: '1:00 PM',
+         arrives: '2:00 PM',
+         actualDepart: undefined,
+         actualArrive: undefined },
+      fill: [Function],
+      triggerDepart: [Function],
+      triggerArrive: [Function],
+      getInformation: [Function] },
+   '366':
+    { data:
+       { number: 366,
+         origin: 'DFW',
+         destination: 'MCI',
+         departs: '10:30 AM',
+         arrives: '12:00 PM',
+         actualDepart: undefined,
+         actualArrive: undefined },
+      fill: [Function],
+      triggerDepart: [Function],
+      triggerArrive: [Function],
+      getInformation: [Function] },
+   '384':
+    { data:
+       { number: 384,
+         origin: 'LAX',
+         destination: 'LAS',
+         departs: '2:00 PM',
+         arrives: '3:00 PM',
+         actualDepart: undefined,
+         actualArrive: undefined },
+      fill: [Function],
+      triggerDepart: [Function],
+      triggerArrive: [Function],
+      getInformation: [Function] },
+   '422':
+    { data:
+       { number: 422,
+         origin: 'LAX',
+         destination: 'MCI',
+         departs: '10:00 AM',
+         arrives: '3:00 PM',
+         actualDepart: undefined,
+         actualArrive: undefined },
+      fill: [Function],
+      triggerDepart: [Function],
+      triggerArrive: [Function],
+      getInformation: [Function] },
+   '434':
+    { data:
+       { number: 434,
+         origin: 'LAS',
+         destination: 'JFK',
+         departs: '7:30 AM',
+         arrives: '3:30 PM',
+         actualDepart: undefined,
+         actualArrive: undefined },
+      fill: [Function],
+      triggerDepart: [Function],
+      triggerArrive: [Function],
+      getInformation: [Function] },
+   '442':
+    { data:
+       { number: 442,
+         origin: 'JFK',
+         destination: 'LAS',
+         departs: '4:30 PM',
+         arrives: '6:30 PM',
+         actualDepart: undefined,
+         actualArrive: undefined },
+      fill: [Function],
+      triggerDepart: [Function],
+      triggerArrive: [Function],
+      getInformation: [Function] },
+   '476':
+    { data:
+       { number: 476,
+         origin: 'JFK',
+         destination: 'ORD',
+         departs: '7:30 AM',
+         arrives: '9:00 AM',
+         actualDepart: undefined,
+         actualArrive: undefined },
+      fill: [Function],
+      triggerDepart: [Function],
+      triggerArrive: [Function],
+      getInformation: [Function] },
+   '485':
+    { data:
+       { number: 485,
+         origin: 'LAX',
+         destination: 'PDX',
+         departs: '8:30 AM',
+         arrives: '10:30 AM',
+         actualDepart: undefined,
+         actualArrive: undefined },
+      fill: [Function],
+      triggerDepart: [Function],
+      triggerArrive: [Function],
+      getInformation: [Function] },
+   '512':
+    { data:
+       { number: 512,
+         origin: 'LAS',
+         destination: 'LAX',
+         departs: '3:00 PM',
+         arrives: '4:00 PM',
+         actualDepart: undefined,
+         actualArrive: undefined },
+      fill: [Function],
+      triggerDepart: [Function],
+      triggerArrive: [Function],
+      getInformation: [Function] },
+   '517':
+    { data:
+       { number: 517,
+         origin: 'PDX',
+         destination: 'LAX',
+         departs: '8:30 AM',
+         arrives: '10:30 AM',
+         actualDepart: undefined,
+         actualArrive: undefined },
+      fill: [Function],
+      triggerDepart: [Function],
+      triggerArrive: [Function],
+      getInformation: [Function] },
+   '527':
+    { data:
+       { number: 527,
+         origin: 'ORD',
+         destination: 'IAH',
+         departs: '7:30 AM',
+         arrives: '10:00 AM',
+         actualDepart: undefined,
+         actualArrive: undefined },
+      fill: [Function],
+      triggerDepart: [Function],
+      triggerArrive: [Function],
+      getInformation: [Function] },
+   '567':
+    { data:
+       { number: 567,
+         origin: 'DFW',
+         destination: 'DEN',
+         departs: '3:00 PM',
+         arrives: '4:00 PM',
+         actualDepart: undefined,
+         actualArrive: undefined },
+      fill: [Function],
+      triggerDepart: [Function],
+      triggerArrive: [Function],
+      getInformation: [Function] },
+   '577':
+    { data:
+       { number: 577,
+         origin: 'PHX',
+         destination: 'LAX',
+         departs: '1:00 PM',
+         arrives: '1:30 PM',
+         actualDepart: undefined,
+         actualArrive: undefined },
+      fill: [Function],
+      triggerDepart: [Function],
+      triggerArrive: [Function],
+      getInformation: [Function] } }
+ flight> info[567]
+ { data:
+    { number: 567,
+      origin: 'DFW',
+      destination: 'DEN',
+      departs: '3:00 PM',
+      arrives: '4:00 PM',
+      actualDepart: undefined,
+      actualArrive: undefined },
+   fill: [Function],
+   triggerDepart: [Function],
+   triggerArrive: [Function],
+   getInformation: [Function] }
+ flight> info[567].triggerArrive()
+ undefined
+ flight> info[567]
+ { data:
+    { number: 567,
+      origin: 'DFW',
+      destination: 'DEN',
+      departs: '3:00 PM',
+      arrives: '4:00 PM',
+      actualDepart: undefined,
+      actualArrive: 1451137315392 },
+   fill: [Function],
+   triggerDepart: [Function],
+   triggerArrive: [Function],
+   getInformation: [Function] }
+ flight> GET /flight/567 200 17ms - 143b
+
+ */
