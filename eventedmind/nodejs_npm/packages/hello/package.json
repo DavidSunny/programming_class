@@ -1,0 +1,17 @@
+{
+  "name": "@keycode/hello",
+  "version": "1.2.0",
+  "description": "A hello world example.",
+  "main": "index.js",
+  "bin": {
+    "hello": "bin/hello"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Yongsun Lee <uuunet1@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^1.1.1"
+  }
+}
